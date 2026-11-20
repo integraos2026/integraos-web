@@ -14,8 +14,8 @@
   --ink: #14201b;
   --ink-2: #44514b;          /* secondary text, 8.3:1 on paper */
   --hair: #d5ded9;
-  --line-green: #00c074;     /* logo green: the in-person line */
-  --line-blue: #70aed4;      /* logo blue: the remote line */
+  --line-green: #00c074;     /* logo green: the remote line, the main one */
+  --line-blue: #70aed4;      /* logo blue: the in-person line, always dotted */
   --green: #007a50;          /* green for text and controls on paper, 5.4:1 */
   --blue: #1f5f87;           /* blue for text on paper, 6.9:1 */
   --sign: #14201b;           /* signage plates */
@@ -382,7 +382,7 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .page h1 { font-size: var(--t-h2); margin-bottom: 28px; }
 .page p, .page li { max-width: 62ch; color: var(--ink-2); }
 .page p + p { margin-top: 14px; }
-.page .pending { display: inline-block; margin-bottom: 18px; padding: 6px 12px; border-radius: 999px; background: #fff4d6; color: #6b4b00; font-weight: 700; font-size: .875rem; }
+.page__tbd { margin-bottom: 18px; }
 .page a { color: var(--green); font-weight: 700; }
 .top__nav--static { display: flex; position: static; flex-direction: row; padding: 0; border: 0; background: none; }
 .top__nav--static .btn { margin: 0; }
