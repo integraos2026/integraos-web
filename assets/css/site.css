@@ -152,17 +152,19 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .sep { margin-inline: .2em; }
 .map { position: relative; margin: 20px 0 0; }
 .map--h { width: 100vw; margin-left: calc(50% - 50vw); }
-.map > svg, .map > .wrap > svg { width: 100%; height: auto; overflow: visible; }
+/* the drawing stops growing at 1600px (labels stay legible on wide screens); its lines still run to the screen's edges */
+.map__stage { position: relative; max-width: 1600px; margin-inline: auto; }
+.map > svg, .map > .wrap > svg, .map__stage > svg { width: 100%; height: auto; overflow: visible; }
 .map--v { display: none; }
 .map--v .wrap > svg { max-width: 260px; }
 .only-narrow { display: none; }
 @media (max-width: 760px) { .map--h { display: none; } .map--v { display: block; } .only-narrow { display: inline-flex; } }
 @media (min-width: 1280px) {   /* the sign overlays the map only where the low line clears it */
   /* the sign stays in the flow and the map slides up under it by the height of its empty top band:
-     the low line sits 0.305vw below the map's top, so it always lands 64px under the sign, whatever the sign's height */
+     the low line sits 0.305 x the stage width below the map's top, so it always lands 64px under the sign, whatever the sign's height */
   .hero { padding-top: 40px; padding-bottom: 8px; }
   .hero__over { position: relative; z-index: 2; }
-  .map--h { margin-top: calc(64px - 30.5vw); }
+  .map--h { margin-top: calc(64px - min(30.5vw, 488px)); }   /* 0.305 x the stage width, capped with it */
 }
 /* the destination sign: "Tu oficina" and its action, set beside the interchange */
 .dest { display: inline-grid; gap: 10px; padding: 14px; border-radius: 16px; background: var(--sign); color: var(--sign-ink); text-decoration: none;
