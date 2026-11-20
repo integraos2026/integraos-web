@@ -1,0 +1,3 @@
+# PoC: no indexar mientras haya datos pendientes
+User-agent: *
+Disallow: /
