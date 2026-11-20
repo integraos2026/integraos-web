@@ -48,6 +48,20 @@
     set('f-plan', a.dataset.modalidad);
   });
 
+  // ---- the train rides again each time the hero map comes back on screen after having left it ----
+  const trains = [...document.querySelectorAll('.m-train')];
+  const heroMap = document.getElementById('inicio');
+  if (trains.length && heroMap && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let left = false;
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) { left = true; return; }
+      if (left && e.intersectionRatio >= 0.5) {
+        left = false;
+        trains.forEach(t => { t.style.animation = 'none'; void t.getBoundingClientRect(); t.style.animation = ''; });
+      }
+    }, { threshold: [0, 0.5] }).observe(heroMap);
+  }
+
   // ---- phone action bar: shown after the hero's actions scroll away, hidden while the form is on screen ----
   const bar = document.querySelector('.actionbar');
   if (bar && 'IntersectionObserver' in window) {

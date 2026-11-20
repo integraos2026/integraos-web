@@ -200,7 +200,7 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .m-label--small { font-weight: 600; font-size: 15px; fill: var(--ink-2); }
 .m-hub-label { font: 850 28px/1 var(--font); fill: var(--ink); letter-spacing: -.01em; }
 .m-code { font: 800 13px/1 var(--font); fill: var(--ink); }
-/* the train: rides the green line once on load and rests at "Tu oficina"; the map itself never hides */
+/* the train: rides the green line on load, and again each time the hero comes back on screen (site.js), then rests at "Tu oficina"; the map itself never hides */
 .m-train { offset-rotate: 0deg; offset-distance: 100%; }
 .m-train rect { fill: var(--ink); stroke: var(--paper); stroke-width: 3; }
 @media (prefers-reduced-motion: no-preference) {
