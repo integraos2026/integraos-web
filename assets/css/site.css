@@ -152,7 +152,7 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .sep { margin-inline: .2em; }
 .map { position: relative; margin: 20px 0 0; }
 .map--h { width: 100vw; margin-left: calc(50% - 50vw); }
-/* the drawing stops growing at 1280px, about the content column, so it never dwarfs the page on wide screens; its lines still run to the screen edges */
+/* the drawing stops growing at 1280px, about the content column, so it never dwarfs the page on wide screens; both lines start under the logo and stay inside it */
 .map__stage { position: relative; max-width: 1280px; margin-inline: auto; }
 .map > svg, .map > .wrap > svg, .map__stage > svg { width: 100%; height: auto; overflow: visible; }
 .map--v { display: none; }
