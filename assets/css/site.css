@@ -385,7 +385,7 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 /* ---------- inner pages ---------- */
 .page { padding-block: clamp(56px, 8vw, 112px); }
 .page h1 { font-size: var(--t-h2); margin-bottom: 28px; }
-.page p, .page li { max-width: 62ch; color: var(--ink-2); }
+.page p, .page li { max-width: 56ch; color: var(--ink-2); }   /* ~78 characters a line in Overpass */
 .page p + p { margin-top: 14px; }
 .page__tbd { margin-bottom: 18px; }
 .page a { color: var(--green); font-weight: 700; }
@@ -399,8 +399,7 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .actionbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; justify-content: center; padding: 10px var(--gut) calc(10px + env(safe-area-inset-bottom));
   background: rgba(255,255,255,.96); border-top: 1px solid var(--hair); transform: translateY(110%); transition: transform .3s var(--ease); }
 .actionbar { gap: 12px; align-items: center; }
-.actionbar__call { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: none; min-height: 46px; padding: 0 14px; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--ink); font-weight: 700; }
-.actionbar__call .tbd { padding: 2px; border-width: 1.5px; }
+.actionbar__call { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: none; min-height: 46px; padding: 0 16px; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--ink); font-weight: 700; color: var(--ink); text-decoration: none; }
 .actionbar .btn { flex: 1; max-width: 420px; justify-content: center; white-space: nowrap; padding-inline: .9em; }
 .actionbar.is-shown { transform: none; }
 @media (min-width: 1001px) { .actionbar { display: none; } }
@@ -445,4 +444,22 @@ section { padding-block: clamp(72px, 9vw, 136px); }
   .routebar__now { display: block; flex: none; margin: 0; font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
   .routebar ol { flex: 1; }
   .routebar a { pointer-events: none; }
+}
+
+/* legal pages: section heads, the date line and the company data list */
+.page h2 { font-size: var(--t-h3); margin: 36px 0 10px; }
+.page__date { font-size: .9375rem; }
+.legal-data { margin: 16px 0 0; display: grid; gap: 0; max-width: 56ch; border-top: 1px solid var(--hair); }
+.legal-data div { display: grid; grid-template-columns: minmax(130px, 34%) 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.legal-data dt { font-weight: 700; color: var(--ink); }
+.legal-data dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 520px) { .legal-data div { grid-template-columns: 1fr; gap: 2px; } }
+.foot__contact a { color: var(--sign-ink); }
+.legal-data .tbd { white-space: normal; }
+/* legal pages on phones: the header's quote button stays on one line next to the logo */
+.top__nav--static .btn { white-space: nowrap; }
+@media (max-width: 520px) {
+  .top:has(.top__nav--static) .top__logo img { height: 36px; }
+  .top__nav--static .btn { font-size: .9375rem; padding-inline: .9em; }
+  .top__nav--static .btn .bullet { display: none; }
 }
