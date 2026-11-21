@@ -48,18 +48,21 @@
     set('f-plan', a.dataset.modalidad);
   });
 
-  // ---- the train rides again each time the hero map comes back on screen after having left it ----
+  // ---- the train waits at the head of the line until its map is on screen, then rides;
+  //      it rides again each time the map comes back after having left the screen ----
   const trains = [...document.querySelectorAll('.m-train')];
-  const heroMap = document.getElementById('inicio');
-  if (trains.length && heroMap && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let left = false;
-    new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) { left = true; return; }
-      if (left && e.intersectionRatio >= 0.5) {
-        left = false;
-        trains.forEach(t => { t.style.animation = 'none'; void t.getBoundingClientRect(); t.style.animation = ''; });
-      }
-    }, { threshold: [0, 0.5] }).observe(heroMap);
+  if (trains.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ride = t => { t.style.animation = 'none'; t.style.offsetDistance = ''; void t.getBoundingClientRect(); t.style.animation = ''; };
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      const t = e.target.querySelector('.m-train');
+      if (!t) return;
+      if (e.intersectionRatio >= 0.5) { if (!e.target.dataset.seen) { e.target.dataset.seen = '1'; ride(t); } }
+      else if (!e.isIntersecting) delete e.target.dataset.seen;
+    }), { threshold: [0, 0.5] });
+    trains.forEach(t => {
+      t.style.animation = 'none'; t.style.offsetDistance = '0%';
+      io.observe(t.closest('svg'));
+    });
   }
 
   // ---- phone action bar: shown after the hero's actions scroll away, hidden while the form is on screen ----

@@ -202,12 +202,13 @@ section { padding-block: clamp(72px, 9vw, 136px); }
 .m-label--small { font-weight: 600; font-size: 15px; fill: var(--ink-2); }
 .m-hub-label { font: 850 28px/1 var(--font); fill: var(--ink); letter-spacing: -.01em; }
 .m-code { font: 800 13px/1 var(--font); fill: var(--ink); }
-/* the train: rides the green line on load, and again each time the hero comes back on screen (site.js), then rests at "Tu oficina"; the map itself never hides */
+/* the train: rides the green line when its map comes on screen, and again each time it comes back (site.js), then rests at "Tu oficina"; without JS it rides once on load; the map itself never hides */
 .m-train { offset-rotate: 0deg; offset-distance: 100%; }
 .m-train rect { fill: var(--ink); stroke: var(--paper); stroke-width: 3; }
 @media (prefers-reduced-motion: no-preference) {
   .m-train { animation: ride 2.6s cubic-bezier(.45,.05,.25,1) .3s both; }
   @keyframes ride { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+  .map--v .m-train { animation-duration: 4.2s; }   /* phone: a slower ride on the vertical map */
 }
 
 /* ---------- direct line (positioning) + legend ---------- */
